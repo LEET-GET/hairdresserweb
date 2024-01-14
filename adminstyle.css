@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #e9ecef;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  
+}
+.header {
+margin-left: auto;
+margin-right: auto;
+display: block;
+float: right;
+}
+img {
+align-items: center;
+max-width: 300px;
+max-height: 80px;
+}
+.header {
+  width: 50%;
+  text-align: center;
+  align-items: center;
+  background-color: #2c92f4;
+  border-radius: 20px;
+
+}
+.header h1 {
+  color: #fff;
+  margin: 0;
+  
+}
+.header p {
+  color: #fff;
+  margin: 0;
+}
+button {
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  width: 50%;
+  box-sizing: border-box;
+}
+button:hover {
+  background-color: #f8f9fa;
+}
+input[type="text"],
+input[type="tel"] {
+  width: 50%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  text-align: center;
+}
+#bookButton {
+  background-color: #28a745;
+  color: #fff;
+}
+#bookButton:hover {
+  background-color: #218838;
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-container > div,
+.flex-container > ul {
+  flex: 1;
+}
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.bookings-list {
+  width: 300px; /* Adjust as needed */
+  overflow-y: auto; /* For scrolling */
+  border-right: 1px solid #ccc; /* Just for styling */
+  padding: 10px;
+}
+
+.booking-item {
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+/* CSS to style the time selection screen */
+#timeSelectionScreen {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: #fff;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+z-index: 1000; /* Ensure it's above other content */
+}
+
+.time-slots {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 10px;
+width: 50%; /* Adjust as necessary */
+margin-top: 20px;
+}
+
+.time-slot {
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#timepicker {
+  width: 50%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+
+
+
+#selectedCategory,
+
+  
+  /* Стили для списка услуг */
+  #selectedServicesList {
+    list-style-type: none; /* Убрать стили списков */
+    padding: 0; /* Убрать внутренние отступы */
+    margin: 0; /* Убрать внешние отступы */
+    width: 100%; /* Ширина списка, можно изменить в зависимости от дизайна */
+  }
+  
+  #selectedServicesList li {
+    display: inline-block; /* Элементы списка в одну строку */
+    margin: 0 10px; /* Отступы между элементами списка */
+  }
+#addMoreServices {
+  color: #007bff;
+  cursor: pointer;
+  display: none; /* Hide until needed */
+
+
+}
+
+/* Стилизация модальных окон */
+.ui-dialog {
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 40px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    min-width: 80vh;
+    width: 80vh;
+    max-height: 80vh; /* Set the max-height for the category selection dialog */
+    overflow-y: auto;
+  }
+  
+  .ui-dialog-titlebar {
+    background-color: #2c92f4;
+    color: white;
+    border: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  .ui-dialog-title {
+    line-height: 1;
+    background-image: logo;
+  }
+  
+  .ui-dialog-content {
+    padding: 20px;
+    color: #333;
+  }
+  
+  .ui-dialog-buttonpane {
+    background: #f7f7f7;
+    border-top: 1px solid #eaeaea;
+  }
+  
+  .ui-dialog .ui-dialog-buttonset button {
+    background-color: #5e72e4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .ui-dialog .ui-dialog-buttonset button:hover {
+    background-color: #324cdd;
+  }
+  
+
+
+
+
+  
+
+
+
+/* Target the category selection dialog by its ID */
+#categoryDialog.ui-dialog {
+  max-height: 50vh; /* Set the max-height for the category selection dialog */
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+}
+
+/* Center content vertically and align to the left */
+#categoryDialog.ui-dialog .ui-dialog-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+}
+
+/* Split the category list into columns */
+#categoryDialog.ui-dialog .ui-dialog-content .category-columns {
+  columns: 2; /* Adjust the number of columns as needed */
+  column-gap: 20px; /* Adjust the gap between columns as needed */
+}
+
+/* Style each category item */
+#categoryDialog.ui-dialog .ui-dialog-content .category-item {
+  margin: 5px 0;
+}
+
+/* Align buttons horizontally */
+#categoryDialog.ui-dialog .ui-dialog-buttonpane {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+/* Adjust button styles if needed */
+#categoryDialog.ui-dialog .ui-dialog-buttonset button {
+  min-width: auto;
+  margin: 0 10px;
+}
+
+  
+  /* Стили для отображения выбранной категории и услуг */
+  #selectedCategory,
+  #selectedServicesList {
+    visibility: visible;
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+    
+  }
+  #selectedCategory li,
+  #selectedServicesList li {
+    width: 50%; /* Ширина должна соответствовать ширине ваших input полей */
+    padding: 10px; /* Подгоните отступы, как у ваших полей ввода */
+    margin: 10px auto; /* Для центрирования элемента списка */
+    border: 1px solid #ccc; /* Цвет и стиль границы, как у input полей */
+    border-radius: 5px; /* Радиус скругления углов, как у input полей */
+    box-sizing: border-box; /* Чтобы padding включался в ширину */
+    background-color: #fff; /* Фон, как у input полей */
+    list-style: none; /* Убрать маркеры списка */
+    text-align: center; /* Выравнивание текста внутри элемента списка */
+    display: block; /* Блочное отображение для занятия всей ширины */
+    float: right;
+
+  }
+  
+  
+  /* Показать кнопку выбора услуги после выбора категории */
+  button#serviceButton {
+    display: block; /* или 'inline-block' в зависимости от ваших нужд */
+    margin: 10px auto;
+  }
+
+  button#specialistButton {
+    display: block; /* или 'inline-block' в зависимости от ваших нужд */
+    margin: 10px auto;
+  }
+
+  .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
+    padding: 6px 15px; /* Увеличьте padding, чтобы у текста было больше места */
+    min-width: 70px; /* Установите минимальную ширину для кнопки, чтобы текст поместился */
+    font-size: 1rem; /* Подстройте размер шрифта, если необходимо */
+    text-transform: none; /* Убедитесь, что нет преобразования текста */
+    white-space: nowrap; /* Убедитесь, что текст не переносится на новую строку */
+  }
+  
+  /* Стилизация текста внутри кнопок */
+  .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button .ui-button-text {
+    padding: .4em 1em; /* Добавить padding, если нужно */
+  }
+  
+  /* Стилизация контента внутри диалогового окна */
+  .ui-dialog .ui-dialog-content {
+    text-align: left; /* Выравнивание по левому краю */
+    padding: 1em; /* Добавление внутренних отступов */
+  }
+  
+  /* Стилизация формы внутри диалогового окна */
+  .ui-dialog form {
+    margin: 0; /* Убрать внешние отступы */
+  }
+  
+  /* Стилизация радиокнопок и их меток */
+  .ui-dialog .ui-dialog-content label {
+    display: block; /* Каждый на новой строке */
+    margin: 0.5em 0; /* Добавить вертикальные отступы для симметрии */
+    cursor: pointer; /* Добавить указатель курсора */
+  }
+  
+  /* Стилизация выбранных радиокнопок */
+  .ui-dialog .ui-dialog-content input[type="radio"]:checked + label {
+    font-weight: bold; /* Выделить жирным выбранный пункт */
+  }
+  
+  
+.ui-datepicker .dimmed {
+color: #ccc !important; /* Make the text color gray */
+visibility: hidden;
+background-color: #f4f4f4 !important; /* Make the background color light gray */
+}
