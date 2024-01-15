@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Russian Calendar</title>
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- Include jQuery UI -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    $(function() {
+      // Set Russian as the language for the datepicker
+      $.datepicker.regional['ru'] = {
+        closeText: 'Закрыть',
+        prevText: '&#x3C;Пред',
+        nextText: 'След&#x3E;',
+        currentText: 'Сегодня',
+        monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
+          'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+        monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн',
+          'Июл','Авг','Сен','Окт','Ноя','Дек'],
+        dayNames: ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'],
+        dayNamesShort: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+        dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+        weekHeader: 'Нед',
+        dateFormat: 'dd.mm.yy',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: ''
+      };
+
+      // Initialize the datepicker with the Russian settings
+      $('#datepicker').datepicker($.datepicker.regional['ru']);
+
+      // Category selection
+      $('#categoryButton').click(function() {
+        $('#categoryDialog').dialog({
+          resizable: false,
+          modal: true,
+          buttons: {
+            'OK': function() {
+              var selectedCategory = $('input[name=category]:checked').val();
+              $('#selectedCategory').text(selectedCategory);
+              $(this).dialog('close');
+            }
+          }
+        });
+      });
+
+      // Service selection based on category
+      $('#serviceButton').click(function() {
+        var selectedCategory = $('#selectedCategory').text();
+
+        // Customize the services based on the selected category
+        var services = [];
+        if (selectedCategory === 'Маникюр') {
+          services = ['Уход за длинными ногтями', 'Стилистическая краска ногтей'];
+        } else if (selectedCategory === 'Стрижка') {
+          services = ['Короткая стрижка', 'Длинная стрижка'];
+        }
+
+        // Show the services in a dialog
+        $('#serviceDialog').dialog({
+          resizable: false,
+          modal: true,
+          buttons: {
+            'OK': function() {
+              $(this).dialog('close');
+            }
+          }
+        }).html('<p>Выберите услугу:</p>' + services.map(function(service) {
+          return '<input type="radio" name="service" value="' + service + '">' + service + '<br>';
+        }).join(''));
+      });
+    });
+  </script>
+</head>
+<body>
+
+  <label for="datepicker">Выберите дату: </label>
+  <input type="text" id="datepicker">
+
+  <br>
+
+  <button id="categoryButton">Выберите категорию</button>
+  <span id="selectedCategory"></span>
+
+  <br>
+
+  <button id="serviceButton">Что вы хотите?</button>
+
+  <div id="categoryDialog" style="display: none;">
+    <p>Выберите категорию:</p>
+    <input type="radio" name="category" value="Маникюр">Маникюр<br>
+    <input type="radio" name="category" value="Стрижка">Стрижка<br>
+  </div>
+
+  <div id="serviceDialog" style="display: none;"></div>
+
+</body>
+</html>
