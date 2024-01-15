@@ -512,7 +512,7 @@ $('#closeTimeSelection').click(function() {
     };
 
     $.ajax({
-      url: 'http://localhost:3000/submit-data',
+      url: 'https://scheduleforhairdresser.onrender.com/submit-data',
       type: 'POST',
       contentType: 'application/json',
       data: JSON.stringify(bookingData),
@@ -537,7 +537,7 @@ $('#closeTimeSelection').click(function() {
 
 function fetchAllBookings() {
   $.ajax({
-    url: 'http://localhost:3000/get-all-bookings',
+    url: 'https://scheduleforhairdresser.onrender.com/get-all-bookings',
     type: 'GET',
     success: function(data) {
       allBookings = convertBookingsToMap(data);
