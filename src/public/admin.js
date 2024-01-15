@@ -549,7 +549,7 @@ $(function() {
     };
 // Inside your click event
 $.ajax({
-  url: 'http://localhost:3000/submit-booking',
+  url: 'https://scheduleforhairdresser.onrender.com/submit-booking',
   type: 'POST',
   contentType: 'application/json',
   data: JSON.stringify(bookingData),
@@ -582,7 +582,7 @@ $.ajax({
 
 function fetchAllBookings() {
   $.ajax({
-    url: 'http://localhost:3000/get-all-bookings',
+    url: 'https://scheduleforhairdresser.onrender.com/get-all-bookings',
     type: 'GET',
     success: function(data) {
       allBookings0 = convertBookingsToMap(data);
@@ -596,7 +596,7 @@ function fetchAllBookings() {
 
 function fetchAllBookingsSub() {
     $.ajax({
-      url: 'http://localhost:3000/get-all-submited-bookings',
+      url: 'https://scheduleforhairdresser.onrender.com/get-all-submited-bookings',
       type: 'GET',
       success: function(data) {
       console.log(data);
@@ -637,7 +637,7 @@ function fetchAllBookingsSub() {
 
 function deleteBooking(bookingId) {
   $.ajax({
-    url: `http://localhost:3000/delete-booking/${bookingId}`,
+    url: `https://scheduleforhairdresser.onrender.com/delete-booking/${bookingId}`,
     type: 'DELETE',
     success: function(response) {
       alert(response.message);
