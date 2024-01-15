@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const mongoUri = "mongodb+srv://butenkoprosha:UANiyPQSBPzj7o5T@xpltoatisu.8xm3ppb.mongodb.net/?retryWrites=true&w=majority";
+const mongoUri = "";
 const client = new MongoClient(mongoUri);
 
 app.post('/submit-data', async (req, res) => {
