@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { ObjectId } = require('mongodb');
 const { MongoClient } = require('mongodb');
+require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const mongoUri = "";
+const mongoUri = process.env.DATABASE_URL;
 const client = new MongoClient(mongoUri);
 
 app.post('/submit-data', async (req, res) => {
@@ -186,7 +187,7 @@ app.post('/edit-booking', async (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 10000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
