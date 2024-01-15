@@ -1,0 +1,17 @@
+{
+  "name": "hairdresser-web-app",
+  "version": "1.0.0",
+  "description": "Web application for managing hairdresser bookings",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Prokhor",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "mongodb": "^3.6.6"
+  }
+}
