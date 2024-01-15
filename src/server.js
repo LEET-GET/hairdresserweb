@@ -6,9 +6,9 @@ const { ObjectId } = require('mongodb');
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
-app.use(express.static('public'));
 
 const app = express();
+app.use(express.static('public'));
 app.use(cors());
 app.use(bodyParser.json());
 
