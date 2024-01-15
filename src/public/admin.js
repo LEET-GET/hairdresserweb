@@ -564,17 +564,16 @@ $.ajax({
     
   });
 
-  // Initialize time slots
   $('.time-slot').click(function() {
     var selectedTime1 = $(this).text();
-    $('#timeSelectionScreen').hide(); // Скрываем экран выбора времени
+    $('#timeSelectionScreen').hide(); // скрываем экран выбора времени
     console.log("hide1");
-    $('#timeSelectionScreen').show(); // Скрываем экран выбора времени
+    $('#timeSelectionScreen').show(); // показываем опять экран выбора времени
     $('.time-slot').click(function() {
         var selectedTime2 = $(this).text();
-        var dateTime = selectedDate + ' ' + selectedTime1 + '-' + selectedTime2; // Формируем строку с датой и временем
+        var dateTime = selectedDate + ' ' + selectedTime1 + '-' + selectedTime2; // формируем строку с датой и временем
         $('#datepicker').val(dateTime); // Обновляем поле ввода
-        $('#timeSelectionScreen').hide(); // Скрываем экран выбора времени
+        $('#timeSelectionScreen').hide();
         console.log("hide2");
     });
   });
@@ -586,7 +585,7 @@ function fetchAllBookings() {
     type: 'GET',
     success: function(data) {
       allBookings0 = convertBookingsToMap(data);
-      console.log(allBookings0); // For debugging
+      console.log(allBookings0); // debugging
     },
     error: function(xhr, status, error) {
       console.error('Error fetching all bookings:', error);
@@ -612,10 +611,10 @@ function fetchAllBookingsSub() {
 
       function displayBookings(bookings) {
         const bookingsContainer = $('#bookingsContainer');
-        bookingsContainer.empty(); // Clear previous bookings
+        bookingsContainer.empty(); 
       
         bookings.forEach((booking, index) => {
-          const dateTime = booking.date.split(' '); // Assuming date and time are separated by a space
+          const dateTime = booking.date.split(' ');
           const formattedDate = dateTime[0];
           const formattedTime = dateTime[1];
       

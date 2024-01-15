@@ -27,6 +27,47 @@ max-height: 80px;
 
 }
 
+/* Existing CSS */
+
+/* Add responsive media query for mobile devices */
+@media (max-width: 768px) { /* Adjust the max-width as needed for your design */
+  button,
+  input[type="text"],
+  input[type="tel"] {
+    width: 90%; /* Set to 90% or 100% as per your design needs */
+    margin: 10px auto; /* Center the buttons */
+    padding: 15px; /* Increase padding for better touch interaction */
+    font-size: 18px; /* Increase font size for better readability */
+  }
+
+  .header {
+    margin: 10px auto;
+    width: 90%;
+  }
+
+  .time-slots {
+    grid-template-columns: repeat(2, 1fr); /* Reduce the number of columns for time slots */
+    width: 90%;
+  }
+
+  /* Make sure the header image scales nicely */
+  img {
+    width: 80%; /* Adjust the percentage as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  /* Adjust dialog sizes for mobile */
+  .ui-dialog {
+    min-width: 90%;
+    max-height: 80vh;
+  }
+  
+  /* Update any other elements as necessary for mobile */
+}
+
+/* Add any additional mobile-specific styles here */
+
+
 #closeTimeSelection {
   position: absolute;
   right: 10px; /* Adjust the position as needed */

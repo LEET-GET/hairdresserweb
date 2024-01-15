@@ -416,8 +416,8 @@ $(function() {
     // Build and show the service selection dialog
     var serviceSelectionHtml = '<p>Выберите услугу:</p>';
     $.each(services, function(index, service) {
-      serviceSelectionHtml += '<input type="radio" name="service" value="' +
-                              service + '">' + service + '<br>';
+      serviceSelectionHtml += '      <label class="service-item"> <input type="radio" name="service" value="' +
+                              service + '">' + service + '</label>';
     });
     $('#serviceDialog').html(serviceSelectionHtml).dialog({
       resizable: false,
