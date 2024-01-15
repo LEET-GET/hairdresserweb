@@ -1,16 +1,28 @@
 const express = require('express');
+const path = require('path'); // Add this line to use the path module
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { ObjectId } = require('mongodb');
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 
+app.use(express.static('public'));
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
 const mongoUri = process.env.DATABASE_URL;
-const client = new MongoClient(mongoUri);
+const client = new MongoClient(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.get('/adminpanelsovabezdostupa', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'adminpanel.html'));
+});
+
 
 app.post('/submit-data', async (req, res) => {
   try {
