@@ -6,8 +6,15 @@
   "scripts": {
     "start": "node server.js"
   },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "author": "Prokhor",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LEET-GET/hairdresserweb/"
+  },
   "dependencies": {
     "express": "^4.17.1",
     "body-parser": "^1.19.0",
