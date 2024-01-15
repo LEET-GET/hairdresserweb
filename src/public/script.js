@@ -433,15 +433,21 @@ $(function() {
     });
   });
 
-  // Update the UI with the selected services
   function updateSelectedServicesUI() {
-    var servicesListHtml = selectedServices.map(function(service) {
-      return '<li>' + service + '</li>';
+    var servicesListHtml = selectedServices.map(function(service, index) {
+      return '<li>' + service + 
+             '<button class="deleteService" data-index="' + index + '">X</button></li>';
     }).join('');
     $('#selectedServicesList').html(servicesListHtml);
     $('#addMoreServices').show();
   }
-
+  
+  $('#selectedServicesList').on('click', '.deleteService', function() {
+    var indexToRemove = parseInt($(this).data('index'), 10);
+    selectedServices.splice(indexToRemove, 1);
+    updateSelectedServicesUI(); // Update the list
+  });
+  
   // Allow adding more services
   $('#addMoreServices').click(function() {
     $('#serviceButton').click();

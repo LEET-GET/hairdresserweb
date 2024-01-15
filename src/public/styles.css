@@ -252,6 +252,19 @@ margin-top: 20px;
     background-image: logo;
   }
   
+
+  .deleteService {
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: red;
+  }
+  
+  .deleteService:hover {
+    color: darkred;
+  }
+  
   .ui-dialog-content {
     padding: 20px;
     color: #333;

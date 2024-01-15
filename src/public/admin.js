@@ -435,8 +435,8 @@ $(function() {
     // Build and show the service selection dialog
     var serviceSelectionHtml = '<p>Выберите услугу:</p>';
     $.each(services, function(index, service) {
-      serviceSelectionHtml += '<input type="radio" name="service" value="' +
-                              service + '">' + service + '<br>';
+      serviceSelectionHtml += '      <label class="service-item"> <input type="radio" name="service" value="' +
+                              service + '">' + service + '</label>';
     });
     $('#serviceDialog').html(serviceSelectionHtml).dialog({
       resizable: false,
@@ -452,14 +452,20 @@ $(function() {
     });
   });
 
-  // Update the UI with the selected services
   function updateSelectedServicesUI() {
-    var servicesListHtml = selectedServices.map(function(service) {
-      return '<li>' + service + '</li>';
+    var servicesListHtml = selectedServices.map(function(service, index) {
+      return '<li>' + service + 
+             '<button class="deleteService" data-index="' + index + '">X</button></li>';
     }).join('');
     $('#selectedServicesList').html(servicesListHtml);
     $('#addMoreServices').show();
   }
+  
+  $('#selectedServicesList').on('click', '.deleteService', function() {
+    var indexToRemove = parseInt($(this).data('index'), 10);
+    selectedServices.splice(indexToRemove, 1);
+    updateSelectedServicesUI(); // Update the list
+  });
 
   // Allow adding more services
   $('#addMoreServices').click(function() {
