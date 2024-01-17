@@ -9,11 +9,15 @@ body {
 }
 
 @media (max-width: 1499px) { /* Adjust the max-width as needed for your design */
-  button,
   input[type="text"],
   input[type="tel"] {
     width: 90%; /* Set to 90% or 100% as per your design needs */
     margin: 10px auto; /* Center the buttons */
+    padding: 15px; /* Increase padding for better touch interaction */
+    font-size: 18px; /* Increase font size for better readability */
+  }
+  button{
+    width: 100%;
     padding: 15px; /* Increase padding for better touch interaction */
     font-size: 18px; /* Increase font size for better readability */
   }
@@ -29,7 +33,7 @@ body {
     width: auto;
     text-align: center;
     align-items: center;
-    background-color: #2c92f4;
+    background-color: #e5bd0d;
     border-radius: 20px;
   }
 
