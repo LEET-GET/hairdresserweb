@@ -20,6 +20,8 @@ body {
     width: 100%;
     padding: 15px; /* Increase padding for better touch interaction */
     font-size: 18px; /* Increase font size for better readability */
+    margin: 10px auto; /* Center the buttons */
+
   }
   body {
     font-family: 'Arial', sans-serif;
@@ -33,7 +35,7 @@ body {
     width: auto;
     text-align: center;
     align-items: center;
-    background-color: #e5bd0d;
+    background-color: #2c92f4;
     border-radius: 20px;
   }
 
@@ -87,8 +89,7 @@ body {
     font-family: 'Arial', sans-serif;
     box-shadow: 0 40px 20px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
-    min-width: 80vh;
-    width: 80vh;
+    width: auto;
     max-height: 80vh; /* Set the max-height for the category selection dialog */
     overflow-y: auto;
   }
@@ -472,4 +473,11 @@ color: #ccc !important; /* Make the text color gray */
 visibility: hidden;
 background-color: #f4f4f4 !important; /* Make the background color light gray */
 }
+}
+
+@media (prefers-color-scheme: dark) {
+  .header {
+      background-color: #2c92f4; /* Same specific color for dark mode */
+  }
+  /* Any other dark mode specific overrides */
 }
