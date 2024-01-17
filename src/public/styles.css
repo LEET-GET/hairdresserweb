@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
-@media (max-width: 1179px) { /* Adjust the max-width as needed for your design */
+@media (min-width: 360px) { /* Adjust the max-width as needed for your design */
   button,
   input[type="text"],
   input[type="tel"] {
