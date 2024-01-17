@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #e9ecef;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  
+}
 
-@media (min-width: 360px) { /* Adjust the max-width as needed for your design */
+@media (max-width: 767px) { /* Adjust the max-width as needed for your design */
   button,
   input[type="text"],
   input[type="tel"] {
@@ -46,14 +54,8 @@
   /* Update any other elements as necessary for mobile */
 }
 
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #e9ecef;
-  margin: 0;
-  padding: 20px;
-  text-align: center;
-  
-}
+@media (min-width: 1920px) { /* Adjust the max-width as needed for your design */
+
 .header {
 margin-left: auto;
 margin-right: auto;
@@ -427,4 +429,5 @@ margin-top: 20px;
 color: #ccc !important; /* Make the text color gray */
 visibility: hidden;
 background-color: #f4f4f4 !important; /* Make the background color light gray */
+}
 }
