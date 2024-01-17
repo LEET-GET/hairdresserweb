@@ -1,20 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
 
-@media (max-width: 100vh) { /* Adjust the max-width as needed for your design */
+@media (max-width: 1179px) { /* Adjust the max-width as needed for your design */
   button,
   input[type="text"],
   input[type="tel"] {
-    width: 90%; /* Set to 90% or 100% as per your design needs */
+    width: 100%; /* Set to 90% or 100% as per your design needs */
     margin: 10px auto; /* Center the buttons */
     padding: 15px; /* Increase padding for better touch interaction */
     font-size: 18px; /* Increase font size for better readability */
   }
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e9ecef;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+  }
 
   .header {
-    width: 90vh;
+    width: auto;
     text-align: center;
     align-items: center;
-    background-color: #ff0000;
+    background-color: red;
     border-radius: 20px;
   }
 
@@ -32,8 +39,8 @@
 
   /* Adjust dialog sizes for mobile */
   .ui-dialog {
-    min-width: 50%;
-    max-height: 50vh;
+    size-adjust: auto;
+    max-width: fit-content;
   }
   
   /* Update any other elements as necessary for mobile */
