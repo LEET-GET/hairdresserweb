@@ -11,10 +11,10 @@
   }
 
   .header {
-    width: 90%;
+    width: 90vh;
     text-align: center;
     align-items: center;
-    background-color: #4ca8ff;
+    background-color: #ff0000;
     border-radius: 20px;
   }
 
@@ -32,8 +32,8 @@
 
   /* Adjust dialog sizes for mobile */
   .ui-dialog {
-    min-width: 90%;
-    max-height: 80vh;
+    min-width: 50%;
+    max-height: 50vh;
   }
   
   /* Update any other elements as necessary for mobile */
