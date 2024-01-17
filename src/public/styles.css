@@ -8,11 +8,11 @@ body {
   
 }
 
-@media (max-width: 767px) { /* Adjust the max-width as needed for your design */
+@media (max-width: 1499px) { /* Adjust the max-width as needed for your design */
   button,
   input[type="text"],
   input[type="tel"] {
-    width: 100%; /* Set to 90% or 100% as per your design needs */
+    width: 90%; /* Set to 90% or 100% as per your design needs */
     margin: 10px auto; /* Center the buttons */
     padding: 15px; /* Increase padding for better touch interaction */
     font-size: 18px; /* Increase font size for better readability */
@@ -29,14 +29,24 @@ body {
     width: auto;
     text-align: center;
     align-items: center;
-    background-color: red;
+    background-color: #2c92f4;
     border-radius: 20px;
   }
 
   .time-slots {
-    grid-template-columns: repeat(2, 1fr); /* Reduce the number of columns for time slots */
-    width: 90%;
-  }
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 50%; /* Adjust as necessary */
+    margin-top: 20px;
+    }
+    
+    .time-slot {
+      padding: 10px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
   /* Make sure the header image scales nicely */
   img {
@@ -44,17 +54,45 @@ body {
     max-width: 300px;
     max-height: 80px;
     }
+    .icon {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+    #closeTimeSelection {
+      position: absolute;
+      right: 10px; /* Adjust the position as needed */
+      top: 10px; /* Adjust the position as needed */
+      border: none;
+      background: none;
+      font-size: 32px; /* Adjust the font size to change the size of the cross */
+      color: #333;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center; /* Vertically centers the content */
+      justify-content: center; /* Horizontally centers the content */
+      border: 2px solid #ccc;
+      border-radius: 20px; /* Makes the button round */
+    }
 
   /* Adjust dialog sizes for mobile */
   .ui-dialog {
-    size-adjust: auto;
-    max-width: fit-content;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 40px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    min-width: 80vh;
+    width: 80vh;
+    max-height: 80vh; /* Set the max-height for the category selection dialog */
+    overflow-y: auto;
   }
   
   /* Update any other elements as necessary for mobile */
 }
 
-@media (min-width: 1920px) { /* Adjust the max-width as needed for your design */
+@media (min-width: 1500px) { /* Adjust the max-width as needed for your design */
 
 .header {
 margin-left: auto;
