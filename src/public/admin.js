@@ -543,21 +543,20 @@ $(function() {
     var startTimeInt = parseInt(startTime, 10);
     var endTimeInt = parseInt(endTime, 10);
   
-    var timeSlots = {};
-    for (let time = startTimeInt; time < endTimeInt; time = incrementTime(time, 30)) {
-      let formattedTime = formatTime(time);
-      timeSlots[formattedTime] = $('#selectedServicesList').text(); // This might need to be adjusted based on how services are structured
-    }
-
     // Get the name and phone number from input fields (Assuming you have input fields with these IDs)
     var name = $('#Name').val();
     var phoneNumber = $('#phoneNumber').val();
+
+    var timeSlots = {};
+    for (let time = startTimeInt; time < endTimeInt; time = incrementTime(time, 30)) {
+      let formattedTime = formatTime(time);
+      // Append the name and phone number to each time slot
+      timeSlots[formattedTime] = $('#selectedServicesList').text() + ', Name: ' + name + ', Phone: ' + phoneNumber;
+    }
   
     var bookingData = {
       date: date,
-      timeSlots: timeSlots,
-      name: name, // Add the name
-      phone: phoneNumber // Add the phone number
+      timeSlots: timeSlots
     };
 
     // Inside your click event
@@ -574,6 +573,7 @@ $(function() {
       }
     });
 });
+
 
 
   $('.time-slot').click(function() {
