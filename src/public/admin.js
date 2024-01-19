@@ -520,6 +520,9 @@ $(function() {
       title: "Выберите специалиста"
     });
   });
+  $('#closeTimeSelection').click(function() {
+    $('#timeSelectionScreen').hide();
+  });
 
   // Обработчик клика на кнопку выбора специалиста
   $(document).on('click', '.selectSpecialistButton', function() {
