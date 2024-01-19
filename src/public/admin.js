@@ -55,9 +55,9 @@ $(function() {
     $('.time-slot').each(function() {
       var time = $(this).text().replace(':', ''); // Convert "8:00" to "800"
       if (bookingsForDate && bookingsForDate[time] === 'no') {
-        $(this).css('background-color', '').css('pointer-events', '');
+        $(this).css('background-color', '');
       } else {
-        $(this).css('background-color', 'red').css('pointer-events', 'none');
+        $(this).css('background-color', 'red');
       }
     });
   }
