@@ -649,14 +649,14 @@ function fetchAllBookingsSub() {
       
           bookingsContainer.append(`
             <div class="booking">
-              <h3>Бронирование ${index + 1}</h3>
+              <h3>Запись ${index + 1}</h3>
               <p>Услуги: ${booking.service}</p>
               <p>Специалист: ${booking.Specialist}</p>
               <p>Имя: ${booking.name}</p>
               <p>Телефон: ${booking.phone}</p>
               <p>Дата: ${formattedDate}</p>
               <p>Время: ${formattedTime}</p>
-              <button onclick="deleteBooking('${booking._id}')">Удалить бронь</button>
+              <button onclick="deleteBooking('${booking._id}')">Удалить запись</button>
               </div>
           `);
         });
