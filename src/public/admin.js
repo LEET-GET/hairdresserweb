@@ -546,29 +546,35 @@ $(function() {
     var timeSlots = {};
     for (let time = startTimeInt; time < endTimeInt; time = incrementTime(time, 30)) {
       let formattedTime = formatTime(time);
-      timeSlots[formattedTime] = $('#selectedServicesList').text();
+      timeSlots[formattedTime] = $('#selectedServicesList').text(); // This might need to be adjusted based on how services are structured
     }
+
+    // Get the name and phone number from input fields (Assuming you have input fields with these IDs)
+    var name = $('#Name').val();
+    var phoneNumber = $('#phoneNumber').val();
   
     var bookingData = {
       date: date,
-      timeSlots: timeSlots
+      timeSlots: timeSlots,
+      name: name, // Add the name
+      phone: phoneNumber // Add the phone number
     };
-// Inside your click event
-$.ajax({
-  url: 'https://scheduleforhairdresser.onrender.com/submit-booking',
-  type: 'POST',
-  contentType: 'application/json',
-  data: JSON.stringify(bookingData),
-  success: function(response) {
-    alert('Booking successful!');
-  },
-  error: function(xhr, status, error) {
-    alert('Booking failed: ' + error);
-  }
+
+    // Inside your click event
+    $.ajax({
+      url: 'https://scheduleforhairdresser.onrender.com/submit-booking',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify(bookingData),
+      success: function(response) {
+        alert('Booking successful!');
+      },
+      error: function(xhr, status, error) {
+        alert('Booking failed: ' + error);
+      }
+    });
 });
 
-    
-  });
 
   $('.time-slot').click(function() {
     var selectedTime1 = $(this).text();

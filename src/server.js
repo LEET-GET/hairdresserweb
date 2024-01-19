@@ -43,21 +43,19 @@ app.post('/submit-booking', async (req, res) => {
   try {
     await client.connect();
     const database = client.db("XPL");
-    const collection = database.collection("second"); // Используйте нужное название коллекции
+    const collection = database.collection("second");
 
-    const { date, timeSlots } = req.body;
+    const { date, timeSlots, name, phone } = req.body;
 
-    // Подготовка объекта обновления
     let updateObj = {};
     for (const [key, value] of Object.entries(timeSlots)) {
-      updateObj[key] = value; // Динамические имена полей
+      updateObj[`timeSlots.${key}`] = { service: value, name: name, phone: phone }; // Store service, name, and phone number
     }
 
-    // Обновление документа
     const result = await collection.updateOne(
       { date: date },
       { $set: updateObj },
-      { upsert: false } // Не создавать новый документ, если он не существует
+      { upsert: true } // Change to true if you want to create a new document when one doesn't exist
     );
 
     res.status(200).json({ message: 'Booking updated', result: result });
@@ -68,6 +66,7 @@ app.post('/submit-booking', async (req, res) => {
     await client.close();
   }
 });
+
 
 
 

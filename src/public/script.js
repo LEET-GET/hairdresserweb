@@ -534,10 +534,10 @@ $('#closeTimeSelection').click(function() {
       contentType: 'application/json',
       data: JSON.stringify(bookingData),
       success: function(response) {
-        alert('Booking successful!');
+        alert('Вы успешно записались! Ожидайте звонка для подтверждения записи.');
       },
       error: function(xhr, status, error) {
-        alert('Booking failed: ' + error);
+        alert('Произошла ошибка во время записи: ' + error);
       }
     });
   });
