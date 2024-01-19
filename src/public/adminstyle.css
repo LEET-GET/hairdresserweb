@@ -101,6 +101,23 @@ input[type="tel"] {
   padding: 5px;
 }
 
+#closeTimeSelection {
+  position: absolute;
+  right: 10px; /* Adjust the position as needed */
+  top: 10px; /* Adjust the position as needed */
+  border: none;
+  background: none;
+  font-size: 32px; /* Adjust the font size to change the size of the cross */
+  color: #333;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center; /* Vertically centers the content */
+  justify-content: center; /* Horizontally centers the content */
+  border: 2px solid #ccc;
+  border-radius: 20px; /* Makes the button round */
+}
 /* CSS to style the time selection screen */
 #timeSelectionScreen {
 position: fixed;
