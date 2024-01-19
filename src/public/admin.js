@@ -65,14 +65,13 @@ $(function() {
   function updateAvailableTimeSlotsForDate2(date) {
     var bookingsForDate = allBookings0[date];
     $('.time-slot').each(function() {
-      var time = $(this).text().replace(':', '');
+      var timeSlotButton = $(this);
+      var time = timeSlotButton.text().replace(':', '');
       if (bookingsForDate && bookingsForDate[time]) {
-        var bookingInfo = bookingsForDate[time];
         // Create a tooltip title with the booking information
-        var tooltipTitle = `Service: ${bookingInfo.service}, Name: ${bookingInfo.name}, Phone: ${bookingInfo.phone}`;
-        $(this).attr('title', tooltipTitle).tooltip(); // Initialize tooltip
+        timeSlotButton.attr('title', bookingsForDate[time]).tooltip();
       } else {
-        $(this).removeAttr('title'); // Remove title if no booking
+        timeSlotButton.removeAttr('title').tooltip("destroy");
       }
     });
   }
