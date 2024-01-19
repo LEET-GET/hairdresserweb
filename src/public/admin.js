@@ -39,6 +39,7 @@ $(function() {
       selectedDate = dateText; // Сохраняем выбранную дату
       console.log(selectedDate);
       updateAvailableTimeSlotsForDate(selectedDate);
+      updateAvailableTimeSlotsForDate2(selectedDate);
       $('#timeSelectionScreen').show();
     }
   }, $.datepicker.regional['ru']));
@@ -51,12 +52,8 @@ $(function() {
   
   function updateAvailableTimeSlotsForDate(date) {
     var bookingsForDate = allBookings0[date];
-    console.log(bookingsForDate);
-    console.log(allBookings0[date]);
-
     $('.time-slot').each(function() {
       var time = $(this).text().replace(':', ''); // Convert "8:00" to "800"
-      console.log(time);
       if (bookingsForDate && bookingsForDate[time] === 'no') {
         $(this).css('background-color', '').css('pointer-events', '');
       } else {
@@ -64,6 +61,24 @@ $(function() {
       }
     });
   }
+
+  function updateAvailableTimeSlotsForDate2(date) {
+    var bookingsForDate = allBookings0[date];
+    $('.time-slot').each(function() {
+      var time = $(this).text().replace(':', '');
+      if (bookingsForDate && bookingsForDate[time]) {
+        var bookingInfo = bookingsForDate[time];
+        // Create a tooltip title with the booking information
+        var tooltipTitle = `Service: ${bookingInfo.service}, Name: ${bookingInfo.name}, Phone: ${bookingInfo.phone}`;
+        $(this).attr('title', tooltipTitle).tooltip(); // Initialize tooltip
+      } else {
+        $(this).removeAttr('title'); // Remove title if no booking
+      }
+    });
+  }
+  
+  // Call this function whenever you fetch new bookings or when a new date is selected
+  
   
   
 
@@ -474,14 +489,14 @@ $(function() {
 
   var specialists = [
     {
-      name: "Имя",
-      description: "Краткое описание специалиста 1",
-      photo: "Barbers-Day-1200x834.jpg" // Измените на реальный путь к изображению
+      name: "Наталия",
+      description: "Парикмахер",
+      photo: "Screenshot_16.jpg" // Измените на реальный путь к изображению
     },
     {
-      name: "Имя",
-      description: "Краткое описание специалиста 2",
-      photo: "Barbers-Day-1200x834.jpg" // Измените на реальный путь к изображению
+      name: "Екатерина",
+      description: "Мастер ногтевого сервиса",
+      photo: "настя-682x1024.jpg" // Измените на реальный путь к изображению
     }
     // ... другие специалисты ...
   ];
@@ -566,10 +581,10 @@ $(function() {
       contentType: 'application/json',
       data: JSON.stringify(bookingData),
       success: function(response) {
-        alert('Booking successful!');
+        alert('Вы успешно записаны! Ожидайте звонка.');
       },
       error: function(xhr, status, error) {
-        alert('Booking failed: ' + error);
+        alert('Запись не удалась: ' + error);
       }
     });
 });
