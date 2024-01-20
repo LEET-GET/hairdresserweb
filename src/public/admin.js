@@ -563,12 +563,13 @@ $(function() {
     // Get the name and phone number from input fields (Assuming you have input fields with these IDs)
     var name = $('#Name').val();
     var phoneNumber = $('#phoneNumber').val();
+    var spec = $('#specialistButton').val();
 
     var timeSlots = {};
     for (let time = startTimeInt; time < endTimeInt; time = incrementTime(time, 30)) {
       let formattedTime = formatTime(time);
       // Append the name and phone number to each time slot
-      timeSlots[formattedTime] = $('#selectedServicesList').text() + ', Имя: ' + name + ', Телефон: ' + phoneNumber + ', Специалист: ';
+      timeSlots[formattedTime] = $('#selectedServicesList').text() + ', Имя: ' + name + ', Телефон: ' + phoneNumber + ', Специалист: ' + spec;
     }
   
     var bookingData = {
@@ -662,7 +663,71 @@ function fetchAllBookingsSub() {
           `);
         });
       }
-       
+
+
+      function countDots(serviceDescription) {
+        return (serviceDescription.match(/\./g) || []).length;
+    }
+    
+    function incrementTime(time, increment) {
+        let hours = Math.floor(time / 100);
+        let minutes = time % 100;
+        minutes += increment;
+        if (minutes >= 60) {
+            hours += 1;
+            minutes -= 60;
+        }
+        return (hours * 100) + minutes;
+    }
+    
+    function addBooking(bookingId) {
+        // Fetch the booking data based on the bookingId
+        let booking = allBookings.find(b => b._id === bookingId);
+        let serviceDescription = booking.service;
+        let numberOfDots = countDots(serviceDescription);
+        let duration = numberOfDots * 30; // Each dot represents 30 minutes
+    
+        let startTimeString = booking.time.replace(':', ''); // Example: "8:00" becomes "800"
+        let startTimeInt = parseInt(startTimeString, 10);
+        let endTimeInt = startTimeInt;
+    
+        for (let i = 0; i < duration; i += 30) {
+            endTimeInt = incrementTime(endTimeInt, 30);
+        }
+    
+        let timeSlots = {};
+        for (let time = startTimeInt; time < endTimeInt; time = incrementTime(time, 30)) {
+            let formattedTime = formatTime(time);
+            timeSlots[formattedTime] = $('#selectedServicesList').text() + ', Имя: ' + booking.name + ', Телефон: ' + booking.phone + ', Специалист: ' + booking.Specialist;
+        }
+    
+        var bookingData = {
+            date: booking.date,
+            timeSlots: timeSlots
+        };
+    
+        // AJAX call to submit the booking data
+        $.ajax({
+            url: 'https://scheduleforhairdresser.onrender.com/submit-booking',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(bookingData),
+            success: function(response) {
+                alert('Запись добавлена успешно.');
+                // Additional UI update logic here
+            },
+            error: function(xhr, status, error) {
+                alert('Ошибка при добавлении записи: ' + error);
+            }
+        });
+    }
+    
+    function formatTime(time) {
+        let hours = Math.floor(time / 100);
+        let minutes = time % 100;
+        return hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+    }
+    
 
 function deleteBooking(bookingId) {
   $.ajax({
