@@ -568,7 +568,7 @@ $(function() {
     for (let time = startTimeInt; time < endTimeInt; time = incrementTime(time, 30)) {
       let formattedTime = formatTime(time);
       // Append the name and phone number to each time slot
-      timeSlots[formattedTime] = $('#selectedServicesList').text() + ', Name: ' + name + ', Phone: ' + phoneNumber;
+      timeSlots[formattedTime] = $('#selectedServicesList').text() + ', Имя: ' + name + ', Телефон: ' + phoneNumber + ', Специалист: ';
     }
   
     var bookingData = {
@@ -656,6 +656,7 @@ function fetchAllBookingsSub() {
               <p>Телефон: ${booking.phone}</p>
               <p>Дата: ${formattedDate}</p>
               <p>Время: ${formattedTime}</p>
+              <button onclick="addBooking('${booking._id}')">Добавить запись</button>
               <button onclick="deleteBooking('${booking._id}')">Удалить запись</button>
               </div>
           `);
