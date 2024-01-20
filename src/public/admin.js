@@ -683,12 +683,17 @@ function fetchAllBookingsSub() {
     
     function addBooking(bookingId) {
       let bookingArray = Object.values(allBookings);
+      console.log(bookingArray);
       let booking = bookingArray.find(b => b._id === bookingId);
+      console.log(booking);
+
       if (!booking) {
           console.error('Booking not found');
           return;
       }
-        let services = booking.service;
+        let services = bookingId.service;
+        console.log(bookingId.service);
+        colsole.log(booking.name);
         let numberOfDots = countDots(services);
         let duration = numberOfDots * 30; // Each dot represents 30 minutes
     
