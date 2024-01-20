@@ -665,8 +665,9 @@ function fetchAllBookingsSub() {
       }
 
 
-      function countDots(serviceDescription) {
-        return (serviceDescription.match(/\./g) || []).length;
+      function countDots(services) {
+        var services = booking.service;
+        return (booking.service.match(/\./g) || []).length;
     }
     
     function incrementTime(time, increment) {
@@ -683,8 +684,8 @@ function fetchAllBookingsSub() {
     function addBooking(bookingId) {
         // Fetch the booking data based on the bookingId
         let booking = allBookings.find(b => b._id === bookingId);
-        let serviceDescription = booking.service;
-        let numberOfDots = countDots(serviceDescription);
+        let services = booking.service;
+        let numberOfDots = countDots(services);
         let duration = numberOfDots * 30; // Each dot represents 30 minutes
     
         let startTimeString = booking.time.replace(':', ''); // Example: "8:00" becomes "800"
@@ -698,7 +699,7 @@ function fetchAllBookingsSub() {
         let timeSlots = {};
         for (let time = startTimeInt; time < endTimeInt; time = incrementTime(time, 30)) {
             let formattedTime = formatTime(time);
-            timeSlots[formattedTime] = $('#selectedServicesList').text() + ', Имя: ' + booking.name + ', Телефон: ' + booking.phone + ', Специалист: ' + booking.Specialist;
+            timeSlots[formattedTime] = booking.service + ', Имя: ' + booking.name + ', Телефон: ' + booking.phone + ', Специалист: ' + booking.Specialist;
         }
     
         var bookingData = {
