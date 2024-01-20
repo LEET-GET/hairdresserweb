@@ -628,7 +628,7 @@ function fetchAllBookingsSub() {
       url: 'https://scheduleforhairdresser.onrender.com/get-all-submited-bookings',
       type: 'GET',
       success: function(data) {
-      console.log(data);
+      console.log('Data from server:', data); // Inspect the data
       displayBookings(data);
       allBookings = convertBookingsToMap(data);
       },
