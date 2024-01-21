@@ -665,10 +665,7 @@ function fetchAllBookingsSub() {
       }
 
 
-      function countDots(services) {
-        var services = booking.service;
-        return (booking.service.match(/\./g) || []).length;
-    }
+
     
     function incrementTime(time, increment) {
         let hours = Math.floor(time / 100);
@@ -694,7 +691,7 @@ function fetchAllBookingsSub() {
         let services = bookingId.service;
         console.log(bookingId.service);
         console.log(booking.name);
-        let numberOfDots = countDots(services);
+        let numberOfDots = (booking.service.match(/\./g) || []).length;
         let duration = numberOfDots * 30; // Each dot represents 30 minutes
     
         let startTimeString = booking.time.replace(':', ''); // Example: "8:00" becomes "800"
