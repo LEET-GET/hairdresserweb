@@ -36,7 +36,7 @@ body {
   input[type="tel"] {
     text-align: center;
     align-items: center;
-    width: 93.5%; /* Set to 90% or 100% as per your design needs */
+    width: 90.5%; /* Set to 90% or 100% as per your design needs */
     margin: 10px auto; /* Center the buttons */
     padding: 15px; /* Increase padding for better touch interaction */
     font-size: 18px; /* Increase font size for better readability */
