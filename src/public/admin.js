@@ -63,14 +63,22 @@ $(function() {
   function updateAvailableTimeSlotsForDate2(date) {
     var bookingsForDate = allBookings0[date];
     $('.time-slot').each(function() {
-      var timeSlotButton = $(this);
-      var time = timeSlotButton.text().replace(':', '');
-      if (bookingsForDate && bookingsForDate[time]) {
-        // Create a tooltip title with the booking information
-        timeSlotButton.attr('title', bookingsForDate[time]).tooltip();
-      }
+        var timeSlotButton = $(this);
+        var time = timeSlotButton.text().replace(':', '');
+        if (bookingsForDate && bookingsForDate[time]) {
+            // Initialize tooltip if not already initialized
+            if (!timeSlotButton.data("ui-tooltip")) {
+                timeSlotButton.tooltip();
+            }
+            timeSlotButton.attr('title', bookingsForDate[time]).tooltip("open");
+        } else {
+            if (timeSlotButton.data("ui-tooltip")) {
+                timeSlotButton.removeAttr('title').tooltip("destroy");
+            }
+        }
     });
-  }
+}
+
   
   // Call this function whenever you fetch new bookings or when a new date is selected
   
