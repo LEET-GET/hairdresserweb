@@ -30,8 +30,7 @@ $(function() {
       }
     },
     onSelect: function(dateText) {
-      selectedDate = dateText; // Сохраняем выбранную дату
-      console.log(selectedDate);
+      selectedDate = dateText; 
       updateAvailableTimeSlotsForDate(selectedDate);
       $('#timeSelectionScreen').show();
     }
@@ -41,15 +40,12 @@ $(function() {
   
 
   
-  console.log($('.time-slot').length);
   function updateAvailableTimeSlotsForDate(date) {
     var bookingsForDate = allBookings[date];
-    console.log(bookingsForDate);
-    console.log(allBookings[date]);
+
 
     $('.time-slot').each(function() {
       var time = $(this).text().replace(':', ''); // Convert "8:00" to "800"
-      console.log(time);
       if (bookingsForDate && bookingsForDate[time] === 'no') {
         $(this).css('background-color', '').css('pointer-events', '');
       } else {
@@ -471,14 +467,13 @@ $('#closeTimeSelection').click(function() {
     {
       name: "Наталия",
       description: "Парикмахер",
-      photo: "Screenshot_16.jpg" // Измените на реальный путь к изображению
+      photo: "Screenshot_16.jpg" 
     },
     {
       name: "Екатерина",
       description: "Мастер ногтевого сервиса",
-      photo: "настя-682x1024.jpg" // Измените на реальный путь к изображению
+      photo: "настя-682x1024.jpg" 
     }
-    // ... другие специалисты ...
   ];
 
   $('#specialistButton').click(function() {
@@ -542,12 +537,11 @@ $('#closeTimeSelection').click(function() {
     });
   });
 
-  // Initialize time slots
   $('.time-slot').click(function() {
     var selectedTime = $(this).text();
-    var dateTime = selectedDate + ' ' + selectedTime; // Формируем строку с датой и временем
+    var dateTime = selectedDate + ' ' + selectedTime; 
     $('#datepicker').val(dateTime); // Обновляем поле ввода
-    $('#timeSelectionScreen').hide(); // Скрываем экран выбора времени
+    $('#timeSelectionScreen').hide();
   });
 });
 
@@ -558,7 +552,6 @@ function fetchAllBookings() {
     type: 'GET',
     success: function(data) {
       allBookings = convertBookingsToMap(data);
-      console.log(allBookings); // For debugging
     },
     error: function(xhr, status, error) {
       console.error('Error fetching all bookings:', error);
