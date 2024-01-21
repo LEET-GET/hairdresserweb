@@ -693,7 +693,7 @@ function fetchAllBookingsSub() {
       }
         let services = bookingId.service;
         console.log(bookingId.service);
-        colsole.log(booking.name);
+        console.log(booking.name);
         let numberOfDots = countDots(services);
         let duration = numberOfDots * 30; // Each dot represents 30 minutes
     
