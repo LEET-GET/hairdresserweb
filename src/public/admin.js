@@ -1,9 +1,23 @@
 var allBookings = [];
 var allBookings0 = [];
+function fetchAllBookings() {
+  $.ajax({
+    url: 'https://scheduleforhairdresser.onrender.com/get-all-bookings',
+    type: 'GET',
+    success: function(data) {
+      allBookings0 = convertBookingsToMap(data);
+      console.log(allBookings0); // debugging
+    },
+    error: function(xhr, status, error) {
+      console.error('Error fetching all bookings:', error);
+    }
+  });
+}
 
 fetchAllBookingsSub();
+fetchAllBookings();
 $(function() {
-  
+  fetchAllBookings();
   $.datepicker.regional['ru'] = {
     closeText: 'Закрыть',
     prevText: '&#x3C;Пред',
@@ -36,6 +50,7 @@ $(function() {
       }
     },
     onSelect: function(dateText) {
+
       selectedDate = dateText; // Сохраняем выбранную дату
       updateAvailableTimeSlotsForDate(selectedDate);
       updateAvailableTimeSlotsForDate2(selectedDate);
@@ -44,7 +59,18 @@ $(function() {
   }, $.datepicker.regional['ru']));
 
   
-
+  $('.time-slot').click(function() {
+    var selectedTime1 = $(this).text();
+    $('#timeSelectionScreen').hide(); // скрываем экран выбора времени
+    $('#timeSelectionScreen').show(); // показываем опять экран выбора времени
+    $('.time-slot').click(function() {
+        var selectedTime2 = $(this).text();
+        var dateTime = selectedDate + ' ' + selectedTime1 + '-' + selectedTime2; // формируем строку с датой и временем
+        $('#datepicker').val(dateTime); // Обновляем поле ввода
+        $('#timeSelectionScreen').hide();
+        console.log("hide2");
+    });
+  });
   
 
   
@@ -63,22 +89,25 @@ $(function() {
   function updateAvailableTimeSlotsForDate2(date) {
     var bookingsForDate = allBookings0[date];
     $('.time-slot').each(function() {
-        var timeSlotButton = $(this);
-        var time = timeSlotButton.text().replace(':', '');
-        if (bookingsForDate && bookingsForDate[time]) {
-            // Initialize tooltip if not already initialized
-            if (!timeSlotButton.data("ui-tooltip")) {
-                timeSlotButton.tooltip();
-            }
-            timeSlotButton.attr('title', bookingsForDate[time]).tooltip("open");
-        } else {
-            if (timeSlotButton.data("ui-tooltip")) {
-                timeSlotButton.removeAttr('title').tooltip("destroy");
-            }
+      var timeSlotButton = $(this);
+      var time = timeSlotButton.text().replace(':', '');
+      if (bookingsForDate && bookingsForDate[time]) {
+        // Initialize tooltip if not already initialized, then update title
+        if (!timeSlotButton.data("ui-tooltip")) {
+          timeSlotButton.tooltip();
         }
+        timeSlotButton.attr('title', bookingsForDate[time]).tooltip('option', 'content', bookingsForDate[time]);
+      } else {
+        // Check if tooltip is initialized before destroying
+        if (timeSlotButton.data("ui-tooltip")) {
+          timeSlotButton.tooltip("destroy");
+        } else {
+          timeSlotButton.removeAttr('title');
+        }
+      }
     });
-}
-
+  }
+  
   
   // Call this function whenever you fetch new bookings or when a new date is selected
   
@@ -598,34 +627,10 @@ $(function() {
 
 
 
-  $('.time-slot').click(function() {
-    var selectedTime1 = $(this).text();
-    $('#timeSelectionScreen').hide(); // скрываем экран выбора времени
-    console.log("hide1");
-    $('#timeSelectionScreen').show(); // показываем опять экран выбора времени
-    $('.time-slot').click(function() {
-        var selectedTime2 = $(this).text();
-        var dateTime = selectedDate + ' ' + selectedTime1 + '-' + selectedTime2; // формируем строку с датой и временем
-        $('#datepicker').val(dateTime); // Обновляем поле ввода
-        $('#timeSelectionScreen').hide();
-        console.log("hide2");
-    });
-  });
+
 });
 
-function fetchAllBookings() {
-  $.ajax({
-    url: 'https://scheduleforhairdresser.onrender.com/get-all-bookings',
-    type: 'GET',
-    success: function(data) {
-      allBookings0 = convertBookingsToMap(data);
-      console.log(allBookings0); // debugging
-    },
-    error: function(xhr, status, error) {
-      console.error('Error fetching all bookings:', error);
-    }
-  });
-}
+
 
 function fetchAllBookingsSub() {
     $.ajax({
@@ -670,7 +675,19 @@ function fetchAllBookingsSub() {
 
 
 
-    
+      function deleteBooking(bookingId) {
+        $.ajax({
+          url: `https://scheduleforhairdresser.onrender.com/delete-booking/${bookingId}`,
+          type: 'DELETE',
+          success: function(response) {
+            alert(response.message);
+            fetchAllBookingsSub()    },
+          error: function(xhr, status, error) {
+            console.error('Error deleting booking:', error);
+            alert('Error deleting booking: ' + error);
+          }
+        });
+      }
     function incrementTime(time, increment) {
         let hours = Math.floor(time / 100);
         let minutes = time % 100;
@@ -710,7 +727,7 @@ function fetchAllBookingsSub() {
       let timeSlots = {};
       for (let time = startTimeInt; time < endTimeInt; time = incrementTime(time, 30)) {
           let formattedTime = formatTime(time);
-          timeSlots[formattedTime] = booking.service + ', Имя: ' + booking.name + ', Телефон: ' + booking.phone + ', Специалист: ' + booking.Specialist;
+          timeSlots[formattedTime] = 'Услуга: ' + booking.service + ', Имя: ' + booking.name + ', Телефон: ' + booking.phone + ', Специалист: ' + booking.Specialist;
       }
     
       var bookingData = {
@@ -726,11 +743,16 @@ function fetchAllBookingsSub() {
             data: JSON.stringify(bookingData),
             success: function(response) {
                 alert('Запись добавлена успешно.');
-                // Additional UI update logic here
+                console.log('Запись добавлена успешно.');
+                deleteBooking(bookingId);
+
+                // Assuming fetchAllBookingsSub() fetches and updates the bookings list
+                fetchAllBookingsSub();
             },
             error: function(xhr, status, error) {
                 alert('Ошибка при добавлении записи: ' + error);
             }
+        
         });
     }
     
@@ -742,19 +764,7 @@ function fetchAllBookingsSub() {
   
     
 
-function deleteBooking(bookingId) {
-  $.ajax({
-    url: `https://scheduleforhairdresser.onrender.com/delete-booking/${bookingId}`,
-    type: 'DELETE',
-    success: function(response) {
-      alert(response.message);
-      fetchAllBookingsSub()    },
-    error: function(xhr, status, error) {
-      console.error('Error deleting booking:', error);
-      alert('Error deleting booking: ' + error);
-    }
-  });
-}
+
       
       
       
