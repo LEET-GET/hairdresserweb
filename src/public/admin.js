@@ -731,10 +731,11 @@ function fetchAllBookingsSub() {
     }
     
     function formatTime(time) {
-        let hours = Math.floor(time / 100);
-        let minutes = time % 100;
-        return hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
-    }
+      let hours = Math.floor(time / 100);
+      let minutes = time % 100;
+      return `${hours}${minutes < 10 ? '0' : ''}${minutes}`;
+  }
+  
     
 
 function deleteBooking(bookingId) {
