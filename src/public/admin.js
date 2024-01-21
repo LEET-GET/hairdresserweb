@@ -680,38 +680,39 @@ function fetchAllBookingsSub() {
     
     function addBooking(bookingId) {
       let bookingArray = Object.values(allBookings);
-      console.log(bookingArray);
       let booking = bookingArray.find(b => b._id === bookingId);
-      console.log(booking);
-
+    
       if (!booking) {
           console.error('Booking not found');
           return;
       }
-        let services = bookingId.service;
-        console.log(bookingId.service);
-        console.log(booking.name);
-        let numberOfDots = (booking.service.match(/\./g) || []).length;
-        let duration = numberOfDots * 30; // Each dot represents 30 minutes
     
-        let startTimeString = booking.time.replace(':', ''); // Example: "8:00" becomes "800"
-        let startTimeInt = parseInt(startTimeString, 10);
-        let endTimeInt = startTimeInt;
+      let services = booking.service;
+      let numberOfDots = (booking.service.match(/\./g) || []).length;
+      let duration = numberOfDots * 30; // Each dot represents 30 minutes
     
-        for (let i = 0; i < duration; i += 30) {
-            endTimeInt = incrementTime(endTimeInt, 30);
-        }
+      // Split the date and time
+      let [bookingDate, bookingTime] = booking.date.split(' ');
     
-        let timeSlots = {};
-        for (let time = startTimeInt; time < endTimeInt; time = incrementTime(time, 30)) {
-            let formattedTime = formatTime(time);
-            timeSlots[formattedTime] = booking.service + ', Имя: ' + booking.name + ', Телефон: ' + booking.phone + ', Специалист: ' + booking.Specialist;
-        }
+      // Replace ':' in time and convert to integer
+      let startTimeString = bookingTime.replace(':', '');
+      let startTimeInt = parseInt(startTimeString, 10);
+      let endTimeInt = startTimeInt;
     
-        var bookingData = {
-            date: booking.date,
-            timeSlots: timeSlots
-        };
+      for (let i = 0; i < duration; i += 30) {
+          endTimeInt = incrementTime(endTimeInt, 30);
+      }
+    
+      let timeSlots = {};
+      for (let time = startTimeInt; time < endTimeInt; time = incrementTime(time, 30)) {
+          let formattedTime = formatTime(time);
+          timeSlots[formattedTime] = booking.service + ', Имя: ' + booking.name + ', Телефон: ' + booking.phone + ', Специалист: ' + booking.Specialist;
+      }
+    
+      var bookingData = {
+          date: bookingDate, // Use just the date part
+          timeSlots: timeSlots
+      };
     
         // AJAX call to submit the booking data
         $.ajax({
