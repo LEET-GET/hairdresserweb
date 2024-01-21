@@ -37,7 +37,6 @@ $(function() {
     },
     onSelect: function(dateText) {
       selectedDate = dateText; // Сохраняем выбранную дату
-      console.log(selectedDate);
       updateAvailableTimeSlotsForDate(selectedDate);
       updateAvailableTimeSlotsForDate2(selectedDate);
       $('#timeSelectionScreen').show();
@@ -47,7 +46,6 @@ $(function() {
   
 
   
-  console.log($('.time-slot').length);
 
   
   function updateAvailableTimeSlotsForDate(date) {
@@ -70,8 +68,6 @@ $(function() {
       if (bookingsForDate && bookingsForDate[time]) {
         // Create a tooltip title with the booking information
         timeSlotButton.attr('title', bookingsForDate[time]).tooltip();
-      } else {
-        timeSlotButton.removeAttr('title').tooltip("destroy");
       }
     });
   }
