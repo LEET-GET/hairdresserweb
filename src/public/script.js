@@ -473,6 +473,11 @@ $('#closeTimeSelection').click(function() {
       name: "Екатерина",
       description: "Мастер ногтевого сервиса",
       photo: "настя-682x1024.jpg" 
+    },
+    {
+      name: "Олеся",
+      description: "Косметолог",
+      photo: "Neck-and-shoulder-pain-in-hairdresser.jpg" 
     }
   ];
 
